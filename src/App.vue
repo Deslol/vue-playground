@@ -1,12 +1,13 @@
 <script setup>
 
 import DynamicListFilter from "@/components/DynamicListFilter.vue";
+import ReusableBtn from "@/components/ReusableBtn.vue";
 </script>
 
 <template>
   <v-card>
-    <v-card-title>VUE playground</v-card-title>
-    <DynamicListFilter/>
+    <!--    <DynamicListFilter/>-->
+    <ReusableBtn label='test' @clicked="console.log('CLICKED')">testing123</ReusableBtn>
   </v-card>
 </template>
 
