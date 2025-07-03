@@ -43,7 +43,7 @@ watch(searchQuery, (newValue) => {
   <input type="text" v-model="searchQuery"/>
   <ul>
     <li v-for="user in filteredList">
-      <span>{{ user.name }}</span>
+      <span :key="user.id">{{ user.name }}</span>
     </li>
   </ul>
 </template>
