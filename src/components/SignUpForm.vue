@@ -21,19 +21,25 @@ const submitHandler = (e) => {
 
 <template>
   <form @submit="submitHandler">
-    <div>
+    <div :style="{
+      color: form.name.length <= 0 ? 'red': 'black'
+    }">
       <label for="name">Name:</label>
       <input type="text" v-model="form.name"/>
-      <p v-if="form.name.length < 0">Name is a required field</p>
+      <p v-if="form.name.length <= 0">Name is a required field</p>
     </div>
 
-    <div>
+    <div :style="{
+      color: form.email.length <= 0 ? 'red': 'black'
+    }">
       <label for="email">Email:</label>
       <input type="email" v-model="form.email"/>
-      <p v-if="form.email.length < 0">Email is a required field</p>
+      <p v-if="form.email.length <= 0">Email is a required field</p>
     </div>
 
-    <div>
+    <div :style="{
+      color: form.password.length < 6 ? 'red': 'black'
+    }">
       <label for="password">Password:</label>
       <input type="password" v-model="form.password"/>
       <p v-if="form.password.length < 6">Password is a required field, at least 6 characters</p>
