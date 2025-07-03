@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch} from "vue";
+import {computed, ref} from "vue";
 
 const users = [
   {
@@ -31,10 +31,8 @@ const users = [
 
 const searchQuery = ref('')
 
-const filteredList = ref(users)
-
-watch(searchQuery, (newValue) => {
-  filteredList.value = users.filter((user) => user.name.toLowerCase().includes(newValue.toLowerCase()))
+const filteredList = computed(() => {
+  return users.filter((user) => user.name.toLowerCase().includes(searchQuery.value.toLowerCase()))
 })
 
 </script>
@@ -43,7 +41,10 @@ watch(searchQuery, (newValue) => {
   <input type="text" v-model="searchQuery"/>
   <ul>
     <li v-for="user in filteredList">
-      <span :key="user.id">{{ user.name }}</span>
+      <div :key="user.id">
+        <h3>Name: <span >{{ user.name }}</span></h3>
+        <h3>Email: <span>{{ user.email}}</span></h3>
+      </div>
     </li>
   </ul>
 </template>
