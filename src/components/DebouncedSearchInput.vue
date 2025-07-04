@@ -12,19 +12,19 @@ const queryString: Ref<string> = ref('')
 
 const emit = defineEmits<{ (e: 'input', value: string): void }>()
 
-let timeOut: number;
+let timeOut: ReturnType<typeof setTimeout> | null = null;
 
 const typingHandler = (e) => {
   clearTimeout(timeOut)
+  queryString.value = e.target.value
   timeOut = setTimeout(() => {
-    queryString.value = e.target.value
     emit('input', queryString.value)
   }, props.debounceMs)
 }
 </script>
 
 <template>
-  <input type="text" @keyup="e=> typingHandler(e)" :value="queryString"/>
+  <input type="text" @input="e=> typingHandler(e)" :value="queryString"/>
 </template>
 
 <style scoped>
