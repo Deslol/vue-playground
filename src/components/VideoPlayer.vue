@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, Ref, ref, watch} from "vue";
+import {onUnmounted, Ref, ref} from "vue";
 
 const play: Ref<Boolean> = ref(true)
 
@@ -13,7 +13,7 @@ const playHandler = () => {
     player.value.play()
   }
 }
-let interval;
+let interval: ReturnType<typeof setInterval>;
 const playerCurrentTime = ref(player?.value?.currentTime ?? 0)
 const playerDuration = ref(player?.value?.duration ?? 0)
 
