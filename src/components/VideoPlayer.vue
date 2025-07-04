@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onUnmounted, Ref, ref} from "vue";
+import {onUnmounted, Ref, ref, watch} from "vue";
 
 const play: Ref<Boolean> = ref(true)
 
@@ -28,6 +28,13 @@ const loadHandler = () => {
 
 onUnmounted(() => {
   clearInterval(interval)
+})
+
+watch(playerCurrentTime, (newValue) => {
+  if (newValue === playerDuration.value) {
+    play.value = true;
+    playerCurrentTime.value = 0
+  }
 })
 
 </script>
