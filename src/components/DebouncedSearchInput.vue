@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {Ref, ref} from "vue";
+import {onBeforeUnmount, Ref, ref} from "vue";
 
 const props = withDefaults(defineProps<{
   debounceMs?: number
@@ -21,6 +21,10 @@ const typingHandler = (e) => {
     emit('input', queryString.value)
   }, props.debounceMs)
 }
+
+onBeforeUnmount(() => {
+  clearTimeout(timeOut)
+})
 </script>
 
 <template>

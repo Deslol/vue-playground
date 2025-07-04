@@ -11,7 +11,7 @@ import DebouncedSearchInput from "@/components/DebouncedSearchInput.vue";
 //   console.log(data)
 // }
 
-// const darkMode = ref(false)
+const darkMode = ref(false)
 //
 // const themeChangeHandler = () => {
 //   darkMode.value = !darkMode.value
@@ -22,7 +22,7 @@ import DebouncedSearchInput from "@/components/DebouncedSearchInput.vue";
 //   darkMode.value = localStorage.getItem('darkMode') === 'true'
 // })
 
-
+const dInput = ref('')
 </script>
 
 <template>
@@ -36,7 +36,8 @@ import DebouncedSearchInput from "@/components/DebouncedSearchInput.vue";
     <!--    <ReusableBtn label='test' @clicked="console.log('CLICKED')">testing123</ReusableBtn>-->
     <!--    <SignUpForm @submit="(e)=> submitHandler(e)"/>-->
     <!--    <ThemeChanger @theme-change="themeChangeHandler">TEST</ThemeChanger>-->
-    <DebouncedSearchInput :debounceMs="5000" @input="value => console.log(value)"/>
+    <DebouncedSearchInput :debounceMs="5000" @input="value => dInput = value"/>
+    <p>userInput: {{ dInput }}</p>
   </div>
 
 </template>
