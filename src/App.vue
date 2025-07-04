@@ -4,7 +4,7 @@ import DynamicListFilter from "@/components/DynamicListFilter.vue";
 import ReusableBtn from "@/components/ReusableBtn.vue";
 import SignUpForm from "@/components/SignUpForm.vue";
 import ThemeChanger from "@/components/ThemeChanger.vue";
-import {onMounted, ref, watch} from "vue";
+import {onMounted, onUnmounted, ref, watch} from "vue";
 
 // const submitHandler = (data) => {
 //   console.log(data)
@@ -18,8 +18,9 @@ const themeChangeHandler = () => {
 }
 
 onMounted(() => {
-  darkMode.value = Boolean(localStorage.getItem('darkMode'))
+  darkMode.value = localStorage.getItem('darkMode') === 'true'
 })
+
 
 </script>
 
@@ -33,7 +34,7 @@ onMounted(() => {
     <!--    <DynamicListFilter/>-->
     <!--    <ReusableBtn label='test' @clicked="console.log('CLICKED')">testing123</ReusableBtn>-->
     <!--    <SignUpForm @submit="(e)=> submitHandler(e)"/>-->
-    <ThemeChanger @theme-change="themeChangeHandler"/>
+    <ThemeChanger @theme-change="themeChangeHandler">TEST</ThemeChanger>
   </div>
 
 </template>
