@@ -3,21 +3,47 @@
 import DynamicListFilter from "@/components/DynamicListFilter.vue";
 import ReusableBtn from "@/components/ReusableBtn.vue";
 import SignUpForm from "@/components/SignUpForm.vue";
+import ThemeChanger from "@/components/ThemeChanger.vue";
+import {onMounted, ref, watch} from "vue";
 
-const submitHandler = (data) => {
-  console.log(data)
+// const submitHandler = (data) => {
+//   console.log(data)
+// }
+
+const darkMode = ref(false)
+
+const themeChangeHandler = () => {
+  darkMode.value = !darkMode.value
+  localStorage.setItem('darkMode', darkMode.value)
 }
+
+onMounted(() => {
+  darkMode.value = Boolean(localStorage.getItem('darkMode'))
+})
+
 </script>
 
 <template>
-  <v-card>
+  <div :style="{
+    backgroundColor: darkMode ? 'black' : 'white',
+    color: darkMode ? 'white' : 'black',
+  }"
+       class="container"
+  >
     <!--    <DynamicListFilter/>-->
     <!--    <ReusableBtn label='test' @clicked="console.log('CLICKED')">testing123</ReusableBtn>-->
-    <SignUpForm @submit="(e)=> submitHandler(e)"/>
-  </v-card>
+    <!--    <SignUpForm @submit="(e)=> submitHandler(e)"/>-->
+    <ThemeChanger @theme-change="themeChangeHandler"/>
+  </div>
 
 </template>
 
 <style scoped>
-
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 </style>
