@@ -6,13 +6,15 @@ import SignUpForm from "@/components/SignUpForm.vue";
 import ThemeChanger from "@/components/ThemeChanger.vue";
 import {onMounted, onUnmounted, ref, watch} from "vue";
 import DebouncedSearchInput from "@/components/DebouncedSearchInput.vue";
+import DynamicFormGen from "@/components/DynamicFormGen.vue";
+import VideoPlayer from "@/components/VideoPlayer.vue";
 
 // const submitHandler = (data) => {
 //   console.log(data)
 // }
 
 const darkMode = ref(false)
-//
+
 // const themeChangeHandler = () => {
 //   darkMode.value = !darkMode.value
 //   localStorage.setItem('darkMode', darkMode.value)
@@ -23,6 +25,14 @@ const darkMode = ref(false)
 // })
 
 const dInput = ref('')
+
+const dummyData = [
+  {name: "username", label: "Username", type: "text", required: true},
+  {name: "email", label: "Email", type: "email", required: true},
+  {name: "age", label: "Age", type: "number", required: false}
+]
+
+
 </script>
 
 <template>
@@ -32,12 +42,14 @@ const dInput = ref('')
   }"
        class="container"
   >
+    <VideoPlayer/>
     <!--    <DynamicListFilter/>-->
     <!--    <ReusableBtn label='test' @clicked="console.log('CLICKED')">testing123</ReusableBtn>-->
     <!--    <SignUpForm @submit="(e)=> submitHandler(e)"/>-->
     <!--    <ThemeChanger @theme-change="themeChangeHandler">TEST</ThemeChanger>-->
-    <DebouncedSearchInput :debounceMs="5000" @input="value => dInput = value"/>
-    <p>userInput: {{ dInput }}</p>
+    <!--    <DebouncedSearchInput :debounceMs="5000" @input="value => dInput = value"/>-->
+    <!--    <p>userInput: {{ dInput }}</p>-->
+    <!--    <DynamicFormGen :schema="dummyData" @submit="value => console.log(value)"/>-->
   </div>
 
 </template>
